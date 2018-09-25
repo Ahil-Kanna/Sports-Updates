@@ -41,14 +41,16 @@ function closeabout() {
 
 }
 
-function live(){
-    window.location.href="live.html";
+function live() {
+    window.location.href = "live.html";
 }
-function stat(){
-    window.location.href="stats.html";
+
+function stat() {
+    window.location.href = "stats.html";
 
 }
-function news(){
-    window.location.href="news.html";
+
+function news() {
+    window.location.href = "news.html";
 
 }

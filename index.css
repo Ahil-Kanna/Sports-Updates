@@ -155,7 +155,7 @@ a img {
 }
 
 .container3 {
-    cursor:pointer;
+    cursor: pointer;
     z-index: 50;
     margin: 0.2em;
     padding: 0.5em;
@@ -249,4 +249,58 @@ h3 {
 
 .frame h4:hover {
     color: red;
+}
+
+.close-button {
+    position: absolute;
+    overflow: hidden;
+    width: fit-content;
+    float: right;
+    top: 1.6em;
+    right: 1.6em;
+    margin-top: 0;
+    z-index: 125;
+}
+
+.bmd-modalContent {
+    box-shadow: none;
+    border: 0;
+    height: fit-content;
+}
+
+.bmd-modalContent .close {
+    font-size: 30px;
+    line-height: 30px;
+    text-shadow: none;
+    opacity: .7;
+    color: #fff;
+}
+
+.bmd-modalContent .close span {
+    display: block;
+}
+
+.bmd-modalContent .close:hover,
+.bmd-modalContent .close:focus {
+    opacity: 1;
+    outline: none;
+}
+
+.bmd-modalContent iframe {
+    display: block;
+    margin: 0 auto;
+}
+
+.embed-responsive {
+    max-height: 550px;
+    height: -webkit-fill-available;
+}
+
+.modal-content {
+    height: fit-content;
+}
+
+.embed-responsive-item {
+    margin: 10px;
+    height: fit-content;
 }
