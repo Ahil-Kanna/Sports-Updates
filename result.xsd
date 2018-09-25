@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="match" >  
+  <xs:complexType>  
+        <xs:sequence>
+        	<xs:element name="tournament" type="xs:string"/>
+        	<xs:element name="team1">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:pattern value="[A-Z][A-Z][A-Z]"></xs:pattern>
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        	<xs:element name="team2">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:pattern value="[A-Z][A-Z][A-Z]"></xs:pattern>
+        			
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        	<xs:element name="score1" type="xs:integer"></xs:element>
+        	<xs:element name="score2" type="xs:integer"></xs:element>
+        	<xs:element name="flag1">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:anyURI">
+        				<xs:pattern value="https://.+"></xs:pattern>
+        			
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        	<xs:element name="flag2">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:anyURI">
+        				<xs:pattern value="https://.+"></xs:pattern>
+        			
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        	<xs:element name="status">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:enumeration value="closed"></xs:enumeration>
+        				<xs:enumeration value="open"></xs:enumeration>
+        				<xs:enumeration value="not_started"></xs:enumeration>
+        			
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        
+        </xs:sequence>
+  </xs:complexType>
+</xs:element>
+</xs:schema>  

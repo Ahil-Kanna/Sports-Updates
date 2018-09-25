@@ -1,0 +1,29 @@
+.boxall{
+    display: grid;
+    grid-template-columns: 1fr 0.3fr 1fr;
+    z-index: 100;
+    overflow-x:auto;
+
+}
+
+
+h1{  
+    margin:1em; 
+    text-align: center;
+}
+h3{
+    margin:2em 0em 2em 0em;
+    text-align: center;
+    
+}
+h2{
+    margin:1.6em;
+    text-align: end;
+}
+h4{
+    float: right;
+    color: bisque;
+}
+h4:hover{
+    color: red;
+}

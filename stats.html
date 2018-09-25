@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="stats.css" />
+    <script src="stats.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Raleway";
+        }
+    </style>
+</head>
+
+<body id="body">
+    <header>
+        <div id="navbar">
+            <div class="navbox c1">
+                <a href="index.html">
+                    <img src="Icons/home.png"></img>
+                </a>
+            </div>
+            <div class="navbox c2">
+                <h1>
+                    <a href="news.html" style="text-decoration: inherit;color:white;">NEWS</a>
+                </h1>
+            </div>
+            <div class="navbox c2">
+                <h1>
+                    <a href="live.html" style="text-decoration: inherit;color:white;">LIVE</a>
+                </h1>
+            </div>
+            <div class="navbox c2 active">
+                <h1>STATS</h1>
+            </div>
+            <div class="navbox c5">
+                <input id="pname" class="sbox" type="search" placeholder="Search player.." maxlength="20" autofocus>
+            </div>
+
+            <div class="navbox c3">
+                <h1>LOGIN</h1>
+            </div>
+            <!--
+            <div class="navbox c4">
+            <h4>SIGNUP</h4>
+            </div>
+            -->
+
+        </div>
+    </header>
+    <div id="loader" style="display:none"></div>
+    <div id="contain" class="container">
+        <!--
+        <div class="innercontainer">
+            <img src="https://fifa17.content.easports.com/fifa/fltOnlineAssets/B1BA185F-AD7C-4128-8A64-746DE4EC5A82/2018/fut/items/images/players/html5/134x134/182521.png"
+                alt="No Img available"></img>
+            <div class="name">
+                <h3>Toni</h3>
+                <h3>Kroos</h3>
+
+            </div>
+            <div class="teams">
+                <img src="https://fifa17.content.easports.com/fifa/fltOnlineAssets/B1BA185F-AD7C-4128-8A64-746DE4EC5A82/2018/fut/items/images/flags/html5/40x25/21.png"></img>
+                <h3>Germany</h3>
+            </div>
+            <div class="teams">
+                    <img src="https://fifa17.content.easports.com/fifa/fltOnlineAssets/B1BA185F-AD7C-4128-8A64-746DE4EC5A82/2018/fut/items/images/clubbadges/html5/normal/24x24/l243.png"></img>
+                    <h3>R. Madrid</h3>
+            </div>
+            <div>
+            <div id="one">
+
+                <h3>Position</h3>
+                <h3>Height</h3>
+                <h3>Weight</h3>
+                <h3>D.O.B.</h3>
+                <h3>Rating</h3>
+
+            </div>
+            <div id="two">
+                <h3>-</h3>
+                <h3>-</h3>
+                <h3>-</h3>
+                <h3>-</h3>
+                <h3>-</h3>
+            </div>
+            <div id="three">
+
+
+
+                <h3>CM</h3>
+                <h3>182</h3>
+                <h3>78</h3>
+                <h3>"1990-01-04"</h3>
+                <h3>96</h3>
+
+            </div>
+            </div>
+
+
+        </div>
+        -->
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            setup();
+            fetch2();
+        });
+    </script>
+
+
+    <footer class="footer" id="foot">
+        <ul class="footlist" style="margin-left: 40px;">
+            <li>ABOUT</li>
+            <li>CONTACT</li>
+            <li>@copyrights reserved</li>
+        </ul>
+    </footer>
+
+    <script>
+        $('#pname').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                fetch($('#pname').val());
+                $('input').prop('disabled', true);
+            }
+        });
+        $('body').click(function (){
+            $('input').prop('disabled', false);
+        });
+    </script>
+
+
+</body>
+
+</html>

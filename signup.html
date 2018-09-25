@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta author="Ahil kanna">
+    <title>Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB0jwL_hIdH7p5jTFFXKnPwjg_mfTFz4vo",
+            authDomain: "sports-updates.firebaseapp.com",
+            databaseURL: "https://sports-updates.firebaseio.com",
+            projectId: "sports-updates",
+            storageBucket: "sports-updates.appspot.com",
+            messagingSenderId: "548698007862"
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+
+<body id="SignupForm">
+    <br><br><br>
+    <div id="snackbar"></div>
+    <div class="container">
+
+        <div class="main-div">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input id="inputName" class="form-control" placeholder="Full name" type="text">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                </div>
+                <input id="inputEmail" class="form-control" placeholder="Email address" type="email">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                </div>
+                <select class="custom-select" style="max-width: 80px;">
+                    <option selected="">+91</option>
+                </select>
+                <input id="phno" class="form-control" placeholder="Phone number" type="text">
+            </div> <!-- form-group end.// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input class="form-control" id="inputPassword" placeholder="Create password" type="password">
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input name="pass" class="form-control" id="inputPassword1" placeholder="Repeat password" type="password">
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" onclick="validate()"> Create Account </button>
+            </div> <!-- form-group// -->
+            <p class="text-center">Have an account? <a href="login.html">Log In</a> </p>
+        </div>
+    </div>
+
+    <script>
+        firebase.auth().signOut();
+        let userInfo;
+
+        function validate() {
+            let name = document.getElementById('inputName').value;
+            let email = document.getElementById('inputEmail').value;
+            let password = document.getElementById('inputPassword').value;
+            let vpassword = document.getElementById('inputPassword1').value;
+            let phone = document.getElementById('phno').value;
+
+            if (name == "" || email == "" || password == '' || vpassword == "" || phone == "") {
+                toast("Field should not be empty")
+            } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+                toast("Enter correct valid email");
+
+            } else if (password != vpassword) {
+                toast("password doesn't match");
+            } else {
+                var lowerCaseLetters = /[a-z]/g;
+                // Validate capital letters
+                var upperCaseLetters = /[A-Z]/g;
+                // Validate numbers
+                var numbers = /[0-9]/g;
+                if (!password.match(lowerCaseLetters)) {
+                    toast('password should contain atleast 1 lowercase letter')
+                } else if (!password.match(upperCaseLetters)) {
+                    toast('password should contain atleast 1 uppercase letter')
+                } else if (!password.match(numbers)) {
+                    toast('password should contain atleast 1 number')
+                }
+                // Validate length
+                else if (!password.length >= 8) {
+                    toast('password should contain atleast 8 characters');
+                } else {
+                    userInfo = {
+                        'name': name,
+                        'email': email,
+                        'pass': password,
+                        'phno': phone
+                    }
+                    console.log(userInfo);
+                    //objectToXml(userInfo);
+                    signup();
+                }
+
+            }
+
+        }
+
+        function signup() {
+            let email = document.getElementById('inputEmail').value;
+            let password = document.getElementById('inputPassword').value;
+            firebase.auth()
+                .createUserWithEmailAndPassword(email, password)
+                .then(function (user) {
+                    if (user && user.emailVerified === false) {
+                        user.sendEmailVerification().then(function () {
+                            toast("email verification sent to user");
+                            //toast("Redirecting to Login page");
+                        });
+                    } else if (user) {
+                        firebase.database().ref("userInfo/" + firebase.auth().currentUser.uid).set(userInfo);
+                    }
+                }).catch(function (error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+
+                    console.log(errorCode, errorMessage);
+                });
+
+        }
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user && user.emailVerified === false) {
+                user.sendEmailVerification().then(function () {
+                    toast("Email verification sent to user");
+                    //toast("Redirecting to Login page");
+                    setInterval(function () {
+                        //window.location = "login.html";
+                    }, 1000);
+                });
+            } else if (user) {
+                firebase.database().ref("userInfo/" + firebase.auth().currentUser.uid).set(userInfo);
+            }
+        });
+
+        function toast(y) {
+            var x = document.getElementById("snackbar");
+            x.innerHTML = y;
+            x.className = "show";
+            setTimeout(function () {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
+
+        function objectToXml(obj) {
+            var xml = '';
+
+            for (var prop in obj) {
+                if (!obj.hasOwnProperty(prop)) {
+                    continue;
+                }
+
+                if (obj[prop] == undefined)
+                    continue;
+
+                xml += "<" + prop + ">";
+                if (typeof obj[prop] == "object")
+                    xml += objectToXml(new Object(obj[prop]));
+                else
+                    xml += obj[prop];
+
+                xml += "<!--" + prop + "-->";
+            }
+
+            //toast(xml);
+        }
+    </script>
+</body>
+
+</html>

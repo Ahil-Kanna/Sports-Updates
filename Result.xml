@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<match xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="result.xsd">
+    <tournament>Asian Games</tournament>
+    <team1>SYR</team1>
+    <team2>VNM</team2>
+    <score1>0</score1>
+    <score2>1</score2>
+    <flag1>https://restcountries.eu/data/syr.svg</flag1>
+    <flag2>https://restcountries.eu/data/vnm.svg</flag2>
+    <status>closed</status>
+</match>

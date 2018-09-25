@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Sports News</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="news/news.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="news/news.js"></script>
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Raleway";
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="navbar">
+            <div class="navbox c1">
+                <a href="index.html">
+                    <img src="http://www.sportupdate.gq/images/home.png"></img>
+                </a>
+            </div>
+            <div class="navbox c2 active">
+                <h1>NEWS</h1>
+            </div>
+            <div class="navbox c2">
+                <h1>
+                    <a href="live.html">LIVE</a>
+                </h1>
+            </div>
+            <div class="navbox c2">
+                <h1>
+                    <a href="stats.html" style="text-decoration: inherit;color:white;">STATS</a>
+                </h1>
+            </div>
+            <div class="navbox c3">
+                <h1>LOGIN</h1>
+            </div>
+            <!--
+            <div class="navbox c4">
+            <h4>SIGNUP</h4>
+            </div>
+            -->
+
+        </div>
+    </header>
+
+    <div class="container1" id="data">
+    </div>
+
+    <footer class="footer">
+        <ul class="footlist" style="margin-left: 40px;">
+            <li>ABOUT</li>
+            <li>CONTACT</li>
+            <li>@copyrights reserved</li>
+        </ul>
+    </footer>
+    <script>
+        fetch();
+    </script>
+</body>
+
+</html>
